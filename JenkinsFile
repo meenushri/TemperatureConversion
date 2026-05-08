@@ -1,29 +1,23 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
                 bat 'javac TempConverter.java'
             }
         }
-
         stage('Test') {
             steps {
                 bat 'javac -cp ".;junit-4.13.2.jar" TempConverterTest.java'
                 bat 'java -cp ".;junit-4.13.2.jar;hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TempConverterTest'
             }
         }
-
         stage('Deploy') {
-    steps {
-        echo 'Application deployed successfully!'
-        echo '100 C to F: 212.0'
-        echo '100 C to K: 373.15'
-        echo '212 F to C: 100.0'
-        echo '373.15 K to F: 212.0'
+            steps {
+                echo 'Deployed!'
+            }
+        }
     }
-}
     post {
         success {
             echo 'All Tests Passed!'
